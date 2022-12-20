@@ -1,5 +1,7 @@
 # fsdd - [f]ile [s]ystem [d]e[d]uplication
 
+[paepche.de/fsdd](https://paepcke.de/fsdd)
+
 - safe space by deduplicate files at (logical) filesystem layer (biggest impact and speedup)
 - supports all unix-like-inode-based filesystems
 - replace [slow|space|time|intensive] symlinks via [fast|cheap] hardlinks
