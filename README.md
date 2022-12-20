@@ -12,22 +12,22 @@
 - yes, its fast 
 - 100% pure go, minimal exernal imports, use as app or api (see api.go)
 
-
 EXPLICIT DATALOSS WARNING
 
 - HARDLINKS ARE ABSOLUTE SAFE AND GREAT FOR BUILDING SMALL/FAST READ-ONLY FILESYSTEMS.
 - ACTIVATE THE WRITE OPTIONS ON R/W FILESYSTEM ONLY IF YOU ARE 100% SURE YOU UNDERSTAND HARDLINKS!
 
+
 ## SHOWTIME 
 
-### Show [read-only] status information, about existing and possible savings
+### Tame your excessive go mod cache! Even on zfs/btrfs, you will love your new, fast and small go module cache!
 ``` Shell
-fsdd . 
-FSDD [start] [/usr/store/dev]  [hash:xxh3] 
-FSDD [_done] [time: 39.900862ms]
-FSDD [stats] [files:11032] [inode(s): 12009] [sym.valid: 848] [sym.invalid: 129] [data blocks: 49.5 Mbytes]
-FSDD [_info] [possible new deduplication savings] [inode(s): 4995] [symlink(s): 848] [data blocks: 3.9 Mbytes]
-```
+cd $GOMODCACHE && fsdd --hardlink . 
+FSDD [start] [/usr/store/go]  [hash:xxh3] 
+FSDD [_done] [time: 41.200862ms]
+FSDD [stats] [files:13329] [inode(s): 8680] [sym.valid: 0] [sym.invalid: 0] [data blocks: 277.3 Mbytes]
+FSDD [_info] [new deduplication savings] [inode(s): 4649] [data blocks: 61.7 Mbytes]
+``` 
 
 ### Same with detailed file listing.
 ``` Shell
