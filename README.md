@@ -42,7 +42,7 @@ fsdd --hard-link .
 [...]
 ```
 
-### Anything else?
+### More?
 
 ``` Shell
 fsdd --help 
