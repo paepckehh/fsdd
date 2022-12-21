@@ -22,7 +22,7 @@ EXPLICIT DATALOSS WARNING
 
 ### Tame your excessive go mod cache! Even on zfs/btrfs, you will love your new, fast and small go module cache!
 ``` Shell
-cd $GOMODCACHE && fsdd --hardlink . 
+cd $GOMODCACHE && fsdd --hard-link . 
 FSDD [start] [/usr/store/go]  [hash:xxh3] 
 FSDD [_done] [time: 41.200862ms]
 FSDD [stats] [files:13329] [inode(s): 8680] [sym.valid: 0] [sym.invalid: 0] [data blocks: 277.3 Mbytes]
