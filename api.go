@@ -1,4 +1,4 @@
-// package fsdd depduplicates files on your harddrive via inode-fs-layer [hardlinks], cleanup symbolic links and metadata
+// package fsdd ...
 package fsdd
 
 // Config is the general application layer high-level interface struct
@@ -15,14 +15,14 @@ type Config struct {
 	Debug                bool
 }
 
-// GetDefaultConfig returns an Config struct with sane defaults
+// GetDefaultConfig ...
 func GetDefaultConfig() *Config {
 	return &Config{
 		FastHash: true,
 	}
 }
 
-// Start will run the deduplication actions as configured in config
+// Start ...
 func (config *Config) Start() {
 	config.run()
 }
