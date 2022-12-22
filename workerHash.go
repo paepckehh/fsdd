@@ -5,8 +5,9 @@ package fsdd
 import (
 	"io"
 	"os"
+	"crypto/sha512"
 
-	"github.com/zeebo/blake3"
+	// "github.com/zeebo/blake3"
 	"github.com/zeebo/xxh3"
 )
 
@@ -93,10 +94,10 @@ const (
 	_hashBlockSize = 1024 * 32
 )
 
-// hash hashes a file  [crypto|preimage|collision] resistant & secure -> blake3 [fast enough for almost any storage/cpu combo]
+// hash hashes a file  [crypto|preimage|collision] resistant & secure -> sha512 [fast enough for almost any storage/cpu combo]
 func hash(file string) [_hashSize]byte {
 	f, _ := os.Open(file)
-	r, h := io.Reader(f), blake3.New()
+	r, h := io.Reader(f), sha512.New()
 	for {
 		block := make([]byte, _hashBlockSize)
 		l, _ := r.Read(block)
@@ -115,7 +116,7 @@ func hash(file string) [_hashSize]byte {
 		hashOut[k] = v
 	}
 	if c.Debug {
-		out("[debug] [hashing] [blake3] [" + file + "]")
+		out("[debug] [hashing] [sha512] [" + file + "]")
 	}
 	return hashOut
 }
