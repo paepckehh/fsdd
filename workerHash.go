@@ -7,7 +7,6 @@ import (
 	"os"
 	"crypto/sha512"
 
-	// "github.com/zeebo/blake3"
 	"github.com/zeebo/xxh3"
 )
 
@@ -97,7 +96,7 @@ const (
 // hash hashes a file  [crypto|preimage|collision] resistant & secure -> sha512 [fast enough for almost any storage/cpu combo]
 func hash(file string) [_hashSize]byte {
 	f, _ := os.Open(file)
-	r, h := io.Reader(f), sha512.New()
+	r, h := io.Reader(f), sha512.New512_256()
 	for {
 		block := make([]byte, _hashBlockSize)
 		l, _ := r.Read(block)

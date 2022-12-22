@@ -18,7 +18,7 @@ const (
 
 // reportInit ...
 func reportInit() {
-	hashfunc := " [hash:blake3] "
+	hashfunc := " [hash:sha512_trunc_256] "
 	if c.FastHash {
 		hashfunc = " [hash:xxh3] "
 	}
