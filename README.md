@@ -78,10 +78,10 @@ syntax: fsdd <start-directory> [options]
 		delete all symlinks where the target does not resolve,
 
  --secure-hash [-H]
-		use Blake3 as cryptographic secure content hash function
+		use SHA512/256 as cryptographic secure hash
 		to avoid intentional designed abusive hash collisions
 
  --fast-hash [-F]
-		10x faster and lightweight file content hashing [via xxh3/64 instead of Blake3]
+		10x faster and lightweight file content hashing [via xxh3/64 instead of SHA512/256]
 		WARNING: fast-hash-deduplication is not 100% intentional [preimage|abuse|collision] resistant
 ```
