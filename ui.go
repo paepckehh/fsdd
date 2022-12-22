@@ -20,7 +20,7 @@ const (
 func reportInit() {
 	hashfunc := " [hash:sha512_trunc_256] "
 	if c.FastHash {
-		hashfunc = " [hash:xxh3] "
+		hashfunc = " [hash:MAPHASH] "
 	}
 	out("FSDD [start] [" + c.Path + "] " + c.Opt + hashfunc)
 }

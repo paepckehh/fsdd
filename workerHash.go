@@ -3,11 +3,10 @@ package fsdd
 
 // import
 import (
+	"crypto/sha512"
+	"hash/maphash"
 	"io"
 	"os"
-	"crypto/sha512"
-
-	"github.com/zeebo/xxh3"
 )
 
 //
@@ -93,9 +92,9 @@ const (
 	_hashBlockSize = 1024 * 32
 )
 
-// hash hashes a file  [crypto|preimage|collision] resistant & secure -> sha512 [fast enough for almost any storage/cpu combo]
+// hash a file via sha512/256 [fast enough on modern 64bit arm64/x86-64 systems with sha assisted hardware instruction set]
 func hash(file string) [_hashSize]byte {
-	f, _ := os.Open(file)
+	f, _ := os.Open(file) // access already verified, skip double check here
 	r, h := io.Reader(f), sha512.New512_256()
 	for {
 		block := make([]byte, _hashBlockSize)
@@ -120,17 +119,18 @@ func hash(file string) [_hashSize]byte {
 	return hashOut
 }
 
-// fasthash hahes a file [collision] secure -> xxH3/128 [ultra fast/light, not secure against *intentional* crafted collisions!]
+// fasthash hash a via via new maphash pkg [fast/light/hardware assisted, not secure against *intentional* crafted collisions!]
 func fastHash(file string) uint64 {
-	f, _ := os.Open(file)
-	r, h := io.Reader(f), xxh3.New()
+	f, _ := os.Open(file) // access already verified, skip double check here
+	r := io.Reader(f)
+	var h maphash.Hash
 	for {
 		block := make([]byte, _hashBlockSize)
 		l, _ := r.Read(block)
 		if l < _hashBlockSize {
 			_, err := h.Write(block)
 			if err != nil {
-				panic("[internal error] [unable to continue] [hash] [state] [xxh3/64]")
+				panic("[internal error] [unable to continue] [hash] [state] [maphash]")
 			}
 			break
 		}
@@ -138,7 +138,7 @@ func fastHash(file string) uint64 {
 	}
 	f.Close()
 	if c.Debug {
-		out("[debug] [hashing] [xxh3] [" + file + "]")
+		out("[debug] [hashing] [maphash] [" + file + "]")
 	}
 	return h.Sum64()
 }
