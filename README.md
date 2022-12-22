@@ -11,7 +11,7 @@ fsdd - [f]ile [s]ystem [d]e[d]uplication
 - reset all [expensive|noisy|leaking|bad-to-compress] metadata eg, birth-time, last-mod time, last-access time
 - analyze exsting filesystem states, backtrack hardlinks, symlinks, savings 
 - does NOT cross filesystem boundaries, does not follow any [fs-external] symlinks 
-- yes, its fast 
+- yes, its fast (uses the new maphash runtime package)
 - 100% pure go, stdlib only, dependency free, use as app or api (see api.go)
 
 # EXPLICIT DATALOSS WARNING
@@ -32,10 +32,10 @@ go install paepcke.de/fsdd/cmd/fsdd@latest
 ## Tame your excessive go mod cache! Even on zfs/btrfs, you will love your new, fast and small go module cache!
 ``` Shell
 cd $GOMODCACHE && fsdd --hard-link . 
-FSDD [start] [/usr/store/go]  [hash:maphash] 
-FSDD [_done] [time: 41.200862ms]
-FSDD [stats] [files:13329] [inode(s): 8680] [sym.valid: 0] [sym.invalid: 0] [data blocks: 277.3 Mbytes]
-FSDD [_info] [new deduplication savings] [inode(s): 4649] [data blocks: 61.7 Mbytes]
+FSDD [start] [/usr/store/go]  [hash:MAPHASH] 
+FSDD [_done] [time: 39.000221ms]
+FSDD [stats] [files:13329] [inode(s): 8680] [sym.valid: 0] [sym.invalid: 0] [data blocks: 277.1 Mbytes]
+FSDD [_info] [new deduplication savings] [inode(s): 4649] [data blocks: 66.9 Mbytes]
 ``` 
 
 ## Same with detailed file listing.
