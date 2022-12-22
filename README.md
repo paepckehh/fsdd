@@ -4,8 +4,8 @@
 
 fsdd - [f]ile [s]ystem [d]e[d]uplication
 
-- safe space by deduplicate files at (logical) filesystem layer (simple/fast)
-- supports all unix-like-inode-based filesystems (dont know about windows)
+- deduplicate files at (logical) filesystem layer (simple/fast)
+- supports unix-like-inode-based filesystems (dont know about windows)
 - replace [slow|space|time|intensive] symlinks via [fast|cheap] hardlinks
 - perfect for all types of [compressed|read-only|rootfs|cache] filesystems 
 - reset all [expensive|noisy|leaking|bad-to-compress] metadata eg, birth-time, last-mod time, last-access time
