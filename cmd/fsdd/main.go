@@ -1,17 +1,14 @@
-// package main ...
 package main
 
-// import
 import (
 	"os"
 
 	"paepcke.de/fsdd"
 )
 
-// main ...
 func main() {
 	var err error
-	c, l := fsdd.GetDefaultConfig(), len(os.Args)
+	c, l := fsdd.DefaultConfig(), len(os.Args)
 	switch {
 	case l > 1:
 		for i := 1; i < l; i++ {
@@ -86,28 +83,23 @@ func main() {
 	c.Start()
 }
 
-// const
 const _syntax string = "syntax: fsdd <start-directory> [options]\n\n--hard-link [-L]\n\t\treplace all duplicated files (within local fs boundary) via hardlinks,\n\t\tsave diskspace and inodes meta data handling, loose duplicate files\n\t\tindividual metadata [not reversible]\n\n--sym-link [-S]\n\t\treplace all duplicated files (within local fs boundary) via symlinks,\n\t\tsave diskspace, keep duplicated individual inodes and metadata\n\n--clean-symlinks [-C]\n\t\treplace all valid resolvable symlinks (local fs boundary) via hardlinks [-R],\n\t\tand remove all broken symlinks [-X], save inodes and metadata handling,\n\t\tloose symlinks metadata [not reversible]\n\n--clean-metadata [-M]\n\t\treset all file and directory timestamps for file create and last-modify date (atime,mtime)\n\t\tto UnixTime 0 (01.01.1970 00:00) and save meta diskspace and handling overhead\n\n--replace-symlinks [-R]\n\t\treplace all valid symlinks via hardlinks, keep broken symlinks\n\t\tsave meta diskspace and handling\n\n--remove-broken-symlinks [-X]\n\t\tdelete all symlinks where the target does not resolve,\n\n--secure-hash [-H]\n\t\tuse SHA512/256 as cryptographic secure hash\n\t\tto avoid intentional designed abusive hash collisions\n\n--fast-hash [-F]\n\t\tfast file content hashing [via MAPHASH instead of SHA512/256]\n\t\tWARNING: fast-hash-deduplication is not 100% intentional [preimage|abuse|collision] resistant!\n\n--verbose [-v]\n--debug [-d]\n--help [-h]\n\nNOTES\n[read-only-mode] Without any activated options (or --verbose only), the application prints only a summary or detailed statistics log."
 
 //
-// Little Helper
+// LITTLE HELPER
 //
 
-// const
 const _modeDir uint32 = 1 << (32 - 1 - 0)
 
-// out ...
 func out(message string) {
 	os.Stdout.Write([]byte(message + "\n"))
 }
 
-// errExit ...
 func errExit(message string) {
 	out("[error] " + message)
 	os.Exit(1)
 }
 
-// isDir ...
 func isDir(filename string) bool {
 	fi, err := os.Stat(filename)
 	if err != nil {
