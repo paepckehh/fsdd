@@ -1,14 +1,11 @@
-// package fsdd
 package fsdd
 
-// import
 import (
 	"runtime"
 	"sync"
 	"time"
 )
 
-// type
 type file struct {
 	name          string   // full qualified file name (path/name)
 	size          uint64   // data size in bytes
@@ -22,7 +19,6 @@ type file struct {
 	newlinktarget string   // target filename (hard|sym)
 }
 
-// var
 var (
 	// global config
 	c *Config
@@ -50,7 +46,6 @@ var (
 	total, hsave, hcount, stotal, sinodes, ssym, failsize, failinodes, failssym, failisym uint64
 )
 
-// run ...
 func (config *Config) run() {
 	// init options (r/o) via global
 	c = optionsSanityCheck(config)
@@ -149,7 +144,7 @@ func (config *Config) run() {
 }
 
 //
-// Little Helper
+// LITTLE HELPER
 //
 
 // optionsSanityCheck ...

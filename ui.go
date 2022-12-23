@@ -1,12 +1,9 @@
-// package fsdd ...
 package fsdd
 
-// import
 import (
 	"time"
 )
 
-// const
 const (
 	_unit     = "bytes"
 	_e        = "]"
@@ -16,7 +13,6 @@ const (
 	_symlinks = " [symlink(s): "
 )
 
-// reportInit ...
 func reportInit() {
 	hashfunc := " [hash:sha512_trunc_256] "
 	if c.FastHash {
@@ -25,7 +21,6 @@ func reportInit() {
 	out("FSDD [start] [" + c.Path + "] " + c.Opt + hashfunc)
 }
 
-// reportSummary ...
 func reportSummary(t0 time.Time) {
 	sinodes -= failinodes
 	stotal -= failsize

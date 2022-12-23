@@ -1,7 +1,5 @@
-// package fsdd
 package fsdd
 
-// import
 import (
 	"crypto/sha512"
 	"hash/maphash"
@@ -13,7 +11,6 @@ import (
 // WORKER
 //
 
-// workerFileHash ...
 func workerFileHash(worker int) {
 	switch c.FastHash {
 	case true:
@@ -37,7 +34,6 @@ func workerFileHash(worker int) {
 	}
 }
 
-// feedFileHash ...
 func feedFileHash() {
 	dupes := make(map[uint64]bool) // avoid hashing inode dupes
 	for _, v := range nfs {
@@ -56,7 +52,6 @@ func feedFileHash() {
 	close(namesChan)
 }
 
-// collectFileHash ...
 func collectFileHash() {
 	switch c.FastHash {
 	case true:
@@ -66,7 +61,6 @@ func collectFileHash() {
 	}
 }
 
-// collectorFastHash ...
 func collectorFastHash() {
 	for f := range hashChan {
 		hFs[f.fasthash] = append(hFs[f.fasthash], f.name)
@@ -74,7 +68,6 @@ func collectorFastHash() {
 	global.Done()
 }
 
-// collectorHash ...
 func collectorHash() {
 	for f := range hashChan {
 		hfs[f.hash] = append(hfs[f.hash], f.name)
@@ -86,7 +79,6 @@ func collectorHash() {
 // BACKEND
 //
 
-// const
 const (
 	_hashSize      = 32
 	_hashBlockSize = 1024 * 32

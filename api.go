@@ -1,4 +1,4 @@
-// package fsdd ...
+// {ackage fsdd allows ypu to deduplicate data via hardlinks
 package fsdd
 
 // Config is the general application layer high-level interface struct
@@ -15,14 +15,14 @@ type Config struct {
 	Debug                bool
 }
 
-// GetDefaultConfig ...
-func GetDefaultConfig() *Config {
+// DefaultConfig provides as sane default config setup
+func DefaultConfig() *Config {
 	return &Config{
 		FastHash: true,
 	}
 }
 
-// Start ...
+// Start will perform the requested action from config
 func (config *Config) Start() {
 	config.run()
 }

@@ -1,7 +1,5 @@
-// package fsdd ...
 package fsdd
 
-// import
 import (
 	"os"
 )
@@ -10,7 +8,6 @@ import (
 // WORKER SECTION
 //
 
-// feedLinkStats ...
 func feedLinkStats() {
 	var result [][]string
 	switch c.FastHash {
@@ -50,7 +47,6 @@ func feedLinkStats() {
 	ctl.Done()
 }
 
-// workerLink ...
 func workerLink(worker int) {
 	for i := 0; i < worker; i++ {
 		go func() {
@@ -64,7 +60,6 @@ func workerLink(worker int) {
 	}
 }
 
-// collectStats ...
 func collectStats() {
 	for f := range failChan {
 		failsize += f.size
@@ -80,7 +75,6 @@ func collectStats() {
 	global.Done()
 }
 
-// consolidateFastHash ...
 func consolidateFastHash() [][]string {
 	var r [][]string
 	for _, v := range hFs {
@@ -91,7 +85,6 @@ func consolidateFastHash() [][]string {
 	return r
 }
 
-// consolidateHash ...
 func consolidateHash() [][]string {
 	var r [][]string
 	for _, v := range hfs {
@@ -106,7 +99,6 @@ func consolidateHash() [][]string {
 // BACKEND
 //
 
-// linkFast ...
 func linkFast(f *file) bool {
 	var err error
 	if c.Verbose {

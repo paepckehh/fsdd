@@ -1,13 +1,10 @@
-// package fsdd
 package fsdd
 
-// import
 import (
 	"os"
 	"syscall"
 )
 
-// cleanMetadata ...
 func cleanMetadata(worker int) {
 	for i := 0; i < worker; i++ {
 		var utimes [2]syscall.Timespec
@@ -24,7 +21,6 @@ func cleanMetadata(worker int) {
 	}
 }
 
-// workerRemoveBrokenSymlinks ...
 func workerRemoveBrokenSymlinks(worker int) {
 	for i := 0; i < worker; i++ {
 		go func() {
@@ -44,7 +40,6 @@ func workerRemoveBrokenSymlinks(worker int) {
 	}
 }
 
-// feederReplaceSymlinks ...
 func feederReplaceSymlinks() {
 	for k, v := range sym {
 		linkChan <- &file{name: v, newlinktarget: k}
@@ -53,7 +48,6 @@ func feederReplaceSymlinks() {
 	ctl.Done()
 }
 
-// feederRemoveBrokenSymlinks ...
 func feederRemoveBrokenSymlinks() {
 	for _, s := range syi {
 		rmsymChan <- s

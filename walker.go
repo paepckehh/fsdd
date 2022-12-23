@@ -1,7 +1,5 @@
-// package fsdd ...
 package fsdd
 
-// import
 import (
 	"os"
 	"syscall"
@@ -11,13 +9,11 @@ import (
 // WORKER SECTION
 //
 
-// const
 const (
 	_modeDir     uint32 = 1 << (32 - 1 - 0)
 	_modeSymlink uint32 = 1 << (32 - 1 - 4)
 )
 
-// workerTreeWalker ...
 func workerTreeWalker(worker int) {
 	fi, err := os.Stat(c.Path)
 	if err != nil {
@@ -103,7 +99,6 @@ func workerTreeWalker(worker int) {
 	}
 }
 
-// collectTreeWalker ...
 func collectTreeWalker() {
 	for f := range fileChan {
 		switch {

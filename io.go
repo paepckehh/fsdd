@@ -1,40 +1,34 @@
-// package fsdd ...
 package fsdd
 
-// import
 import (
 	"os"
 )
 
 //
-// Display IO
+// DISPLAY IO
 //
 
-// out ...
 func out(message string) {
 	os.Stdout.Write([]byte(message + "\n"))
 }
 
 //
-// Error Display IO
+// ERROR DISPLAY IO
 //
 
-// errOut ...
 func errOut(m string) {
 	out("[error] " + m)
 }
 
-// errExit ...
 func errExit(m string) {
 	errOut(m)
 	os.Exit(1)
 }
 
 //
-// File IO
+// FILE IO
 //
 
-// pathSanitizer ...
 func pathSanitizer(path string) string {
 	var err error
 	if path == "." {
@@ -46,7 +40,6 @@ func pathSanitizer(path string) string {
 	return path
 }
 
-// verifyPath ...
 func verifyPath(path string) string {
 	var err error
 	_, err = os.ReadDir(path)

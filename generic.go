@@ -1,16 +1,12 @@
-// package fsdd ...
 package fsdd
 
-// import
 import (
 	"fmt"
 	"strconv"
 )
 
-// itoa ...
 func itoa(in int) string { return strconv.Itoa(in) }
 
-// itoaU64 ...
 func itoaU64(in uint64) string { return strconv.FormatUint(in, 10) }
 
 // hruIEC converts value to hru IEC 60027 units
