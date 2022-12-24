@@ -36,7 +36,7 @@ func main() {
 				c.Opt += "[--remove-broken-symlinks] "
 			case "--fast-hash", "-F":
 				// c.FastHash = true
-				c.Opt += "[--fast-hash] "
+				// c.Opt += "[--fast-hash] "
 			case "--secure-hash", "-H":
 				c.FastHash = false
 				c.Opt += "[--secure-hash] "
