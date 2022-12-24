@@ -18,7 +18,6 @@ type Config struct {
 // DefaultConfig provides as sane default config setup
 func DefaultConfig() *Config {
 	return &Config{
-		FastHash: true,
 	}
 }
 
