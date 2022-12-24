@@ -17,8 +17,7 @@ type Config struct {
 
 // DefaultConfig provides as sane default config setup
 func DefaultConfig() *Config {
-	return &Config{
-	}
+	return &Config{}
 }
 
 // Start will perform the requested action from config

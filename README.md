@@ -14,12 +14,6 @@ fsdd - [f]ile [s]ystem [d]e[d]uplication
 - yes, its fast (uses the new maphash runtime package)
 - 100% pure go, stdlib only, dependency free, use as app or api (see api.go)
 
-# EXPLICIT DATALOSS WARNING
-
-- HARDLINKS ARE ABSOLUTE SAFE AND GREAT FOR BUILDING MOST TYPES OF SMALL/FAST R/W CACHES.
-- HARDLINKS ARE ABSOLUTE SAFE AND GREAT FOR BUILDING MOST TYPES OF SMALL/FAST READ-ONLY FILESYSTEMS.
-- ACTIVATE THE WRITE OPTION ON OTHER R/W FILESYSTEM ONLY IF YOU ARE 100% SURE YOU UNDERSTAND HARDLINKS!
-- NOT TESTED ON NON-UNIX-LIKE FILESYSTEMS (YET)
 
 # INSTALL
 
@@ -90,6 +84,13 @@ syntax: fsdd <start-directory> [options]
 		extreme fast file content hashing [via MAPHASH instead of SHA512/256]
 		WARNING: fast-hash-deduplication is not 100% intentional [preimage|abuse|collision] resistant!
 ```
+
+# WARNING
+
+Hardlinks are absolute great for building fast, small and snappy read-only filesystems and most 
+types of filesytem backed (automaticly) managed caches. But on normal manually managed full read
+and write filesystems hardlinks could result in unexpected data changes or data loss.
+
 
 # CONTRIBUTION
 
