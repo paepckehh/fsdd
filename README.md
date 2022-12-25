@@ -88,7 +88,7 @@ syntax: fsdd <start-directory> [options]
 # WARNING
 
 Hardlinks are absolute great for building fast, small and snappy read-only filesystems and most 
-types of filesytem backed (automaticly) managed caches. But on normal manually managed full read
+types of filesytem backed (automatically) managed caches. But on normal manually managed full read
 and write filesystems hardlinks could result in unexpected data changes or data loss.
 
 
