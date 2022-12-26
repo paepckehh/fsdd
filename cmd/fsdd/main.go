@@ -9,7 +9,7 @@ import (
 func main() {
 	var err error
 	c, l := fsdd.DefaultConfig(), len(os.Args)
-	c.FastHash = false
+	c.FastHash = true
 	switch {
 	case l > 1:
 		for i := 1; i < l; i++ {
@@ -35,8 +35,8 @@ func main() {
 				c.RemoveBrokenSymlinks = true
 				c.Opt += "[--remove-broken-symlinks] "
 			case "--fast-hash", "-F":
-				// c.FastHash = true
-				// c.Opt += "[--fast-hash] "
+				c.FastHash = true
+				c.Opt += "[--fast-hash] "
 			case "--secure-hash", "-H":
 				c.FastHash = false
 				c.Opt += "[--secure-hash] "

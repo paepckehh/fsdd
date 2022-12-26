@@ -84,7 +84,8 @@ const (
 	_hashBlockSize = 1024 * 32
 )
 
-// hash a file via sha512/256 [fast enough on modern 64bit arm64/x86-64 systems with sha assisted hardware instruction set]
+// hash a file via sha512/256
+// fast enough on most modern 64bit arm64/x86-64 systems with sha assisted hardware instruction set
 func hash(file string) [_hashSize]byte {
 	f, _ := os.Open(file) // access already verified, skip double check here
 	r, h := io.Reader(f), sha512.New512_256()
@@ -105,17 +106,19 @@ func hash(file string) [_hashSize]byte {
 	for k, v := range h.Sum(nil) {
 		hashOut[k] = v
 	}
-	if c.Debug {
-		out("[debug] [hashing] [sha512] [" + file + "]")
-	}
 	return hashOut
 }
 
-// fasthash hash a via via new maphash pkg [fast/light/hardware assisted, not secure against *intentional* crafted collisions!]
-func fastHash(file string) uint64 {
+// mseed intit an static seed
+var mseed = maphash.MakeSeed()
+
+// fasthash hash a via the new maphash pkg
+// extreme fast, but not secure against intentional crafted collisions (exact filesize & filehash must meet here, hard to archive)
+func fastHashX(file string) uint64 {
 	f, _ := os.Open(file) // access already verified, skip double check here
 	r := io.Reader(f)
 	var h maphash.Hash
+	h.SetSeed(mseed)
 	for {
 		block := make([]byte, _hashBlockSize)
 		l, _ := r.Read(block)
@@ -129,8 +132,5 @@ func fastHash(file string) uint64 {
 		h.Write(block)
 	}
 	f.Close()
-	if c.Debug {
-		out("[debug] [hashing] [maphash] [" + file + "]")
-	}
 	return h.Sum64()
 }
