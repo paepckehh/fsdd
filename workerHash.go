@@ -114,7 +114,7 @@ var mseed = maphash.MakeSeed()
 
 // fasthash hash a via the new maphash pkg
 // extreme fast, but not secure against intentional crafted collisions (exact filesize & filehash must meet here, hard to archive)
-func fastHashX(file string) uint64 {
+func fastHash(file string) uint64 {
 	f, _ := os.Open(file) // access already verified, skip double check here
 	r := io.Reader(f)
 	var h maphash.Hash
