@@ -99,6 +99,8 @@ func consolidateHash() [][]string {
 // BACKEND
 //
 
+const _templink = ".fsdd.temp.link.pls.remove.me"
+
 func linkFast(f *file) bool {
 	var err error
 	if c.Verbose {
@@ -109,9 +111,10 @@ func linkFast(f *file) bool {
 			out("-> new HardLink [" + f.name + "] -> [" + f.newlinktarget + "]")
 		}
 	}
-	err = os.Remove(f.newlinktarget)
+	tlink := f.newlinktarget + _templink
+	err = os.Rename(f.newlinktarget, tlink)
 	if err != nil {
-		errOut("[link] unable to remove [" + f.newlinktarget + "] [" + err.Error() + "]")
+		errOut("[link] unable to rename [" + f.newlinktarget + "] [" + err.Error() + "]")
 		return false
 	}
 	switch {
@@ -123,6 +126,11 @@ func linkFast(f *file) bool {
 	if err != nil {
 		errOut("[link] [unable to link] [" + f.name + "] [" + f.newlinktarget + "] [" + err.Error() + "]")
 		errExit("[link] unrecoverable error, please restore [" + f.newlinktarget + "] via [" + f.name + "] manually, EXIT")
+	}
+	err = os.Remove(tlink)
+	if err != nil {
+		errOut("[link] unable to rename [" + tlink + "] [" + err.Error() + "]")
+		return false
 	}
 	return true
 }
