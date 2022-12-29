@@ -11,8 +11,8 @@ jobs:
   build:
     strategy:
       matrix:
-        go-version: [1.17.x, 1.18.x, 1.19.x]
-        os: [debian-lastest, ubuntu-latest, macos-latest, freebsd-latest]
+        go-version: [1.19.x]
+        os: [ubuntu-latest, macos-latest]
     env:
       CGO_ENABLED: 0
     runs-on: ${{ matrix.os }}
@@ -28,5 +28,5 @@ jobs:
     - name: build
       run: go build ./...
     
-    - name: bet
+    - name: vet
       run: go vet ./...
