@@ -5,7 +5,7 @@
 fsdd - [f]ile [s]ystem [d]e[d]uplication
 
 - deduplicate files at (logical) filesystem layer (simple/fast)
-- supports unix-like-inode-based filesystems (dont know about windows)
+- supports unix-like-inode-based filesystems (no support for microsoft windows yet))
 - replace [slow|space|time|intensive] symlinks via [fast|cheap] hardlinks
 - perfect for all types of [compressed|read-only|rootfs|cache] filesystems 
 - reset all [expensive|noisy|leaking|bad-to-compress] metadata eg, birth-time, last-mod time, last-access time
