@@ -1,4 +1,4 @@
-//go:build netbsd || freebsd || darwin || openbsd
+//go:build freebsd || darwin 
 
 package fsdd
 
