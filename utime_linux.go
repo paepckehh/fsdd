@@ -1,4 +1,4 @@
-//go:build openbsd || aix || linux 
+//go:build openbsd || aix || linux
 
 package fsdd
 
