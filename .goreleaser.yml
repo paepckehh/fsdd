@@ -5,14 +5,11 @@ builds:
     id: "fsdd"
     binary: fsdd
     main: ./cmd/fsdd/main.go
-    flags:
-      - -trimpath -ldflags=-w -ldflags=-s
     env:
       - CGO_ENABLED=0
     goos:
       - linux
       - freebsd
-      - netbsd
       - darwin
       - openbsd
     goarch:
@@ -25,14 +22,6 @@ archives:
   -
     id: fsdd-binaries
     name_template: "fsdd-{{ .Os }}_{{ .Arch }}_{{ .Version }}"
-    replacements:
-      darwin: OSX
-      linux: Linux
-      windows: Windows
-      amd64: x86_64
-      freebsd: FreeBSD
-      netbsd: NetBSD
-      openbsd: OpenBSD
     files:
       - LICENSE.md
       - README.md
@@ -55,10 +44,3 @@ nfpms:
     formats:
       - deb
       - rpm
-    replacements:
-      darwin: Darwin
-      linux: Linux
-      freebsd: FreeBSD
-      amd64: x86_64
-      netbsd: NetBSD
-      openbsd: OpenBSD
