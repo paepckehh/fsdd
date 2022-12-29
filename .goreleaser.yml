@@ -38,7 +38,7 @@ nfpms:
     vendor: Michael Paepcke
     homepage: https://paepcke.de/fsdd
     maintainer: Michael Paepcke <git@paepcke.de>
-    description: Filesystem Deduplication Tool
+    description: fsdd - filesystem deduplication tool
     license: BSD 3-Clause
     formats:
       - deb

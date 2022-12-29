@@ -21,6 +21,10 @@ fsdd - [f]ile [s]ystem [d]e[d]uplication
 go install paepcke.de/fsdd/cmd/fsdd@latest
 ```
 
+# DOWNLOAD (prebuild binaries)
+
+[github.com/paepckehh/fsdd/releases](https://github.com/paepckehh/fsdd/releases)
+
 # SHOWTIME 
 
 ## Tame your excessive go mod cache! Even on zfs/btrfs, you will love your new, fast and small go module cache!
