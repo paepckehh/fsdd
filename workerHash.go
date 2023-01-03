@@ -99,7 +99,10 @@ func hash(file string) [_hashSize]byte {
 			}
 			break
 		}
-		h.Write(block)
+		_, err := h.Write(block)
+		if err != nil {
+			panic("[internal error] [unable to continue] [hash] [state]")
+		}
 	}
 	f.Close()
 	var hashOut [_hashSize]byte
@@ -129,7 +132,10 @@ func fastHash(file string) uint64 {
 			}
 			break
 		}
-		h.Write(block)
+		_, err := h.Write(block)
+		if err != nil {
+			panic("[internal error] [unable to continue] [hash] [state] [maphash]")
+		}
 	}
 	f.Close()
 	return h.Sum64()
