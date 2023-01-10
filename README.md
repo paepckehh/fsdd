@@ -95,6 +95,9 @@ Hardlinks are absolute great for building fast, small and snappy read-only files
 types of filesytem backed (automatically) managed caches. But on normal manually managed full read
 and write filesystems hardlinks could result in unexpected data changes or data loss.
 
+# DOCS
+
+[pkg.go.dev/paepcke.de/fsdd](https://pkg.go.dev/paepcke.de/fsdd)
 
 # CONTRIBUTION
 
