@@ -1,6 +1,6 @@
 # OVERVIEW 
 
-[paepche.de/fsdd](https://paepcke.de/fsdd)
+[paepche.de/fsdd](https://paepcke.de/fsdd/)
 
 fsdd - [f]ile [s]ystem [d]e[d]uplication
 
