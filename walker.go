@@ -118,7 +118,7 @@ func collectTreeWalker() {
 				hcount++
 				hsave += f.size
 				if c.Verbose {
-					out("hardline [" + f.name + "] -> [" + v[0] + "]")
+					out("hard-link [" + f.name + "] -> [" + v[0] + "]")
 				}
 				xfs[f.inode] = append(xfs[f.inode], f.name)
 				continue
