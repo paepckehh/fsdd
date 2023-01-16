@@ -1,5 +1,5 @@
 # OVERVIEW 
-[![Go Report Card](https://goreportcard.com/badge/paepcke.de/fsdd)](https://goreportcard.com/report/paepcke.de/fsdd)
+[![Go Reference](https://pkg.go.dev/badge/paepcke.de/dnsresolver.svg)](https://pkg.go.dev/paepcke.de/dnsresolver) [![Go Report Card](https://goreportcard.com/badge/paepcke.de/fsdd)](https://goreportcard.com/report/paepcke.de/fsdd)
 
 [paepche.de/fsdd](https://paepcke.de/fsdd/)
 
