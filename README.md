@@ -1,4 +1,5 @@
 # OVERVIEW 
+[![Go Report Card](https://goreportcard.com/badge/paepcke.de/fsdd)](https://goreportcard.com/report/paepcke.de/fsdd)
 
 [paepche.de/fsdd](https://paepcke.de/fsdd/)
 
