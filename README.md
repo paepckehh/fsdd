@@ -1,5 +1,5 @@
 # OVERVIEW 
-[![Go Reference](https://pkg.go.dev/badge/paepcke.de/dnsresolver.svg)](https://pkg.go.dev/paepcke.de/dnsresolver) [![Go Report Card](https://goreportcard.com/badge/paepcke.de/fsdd)](https://goreportcard.com/report/paepcke.de/fsdd)[![build](https://github.com/paepckehh/fsdd/actions/workflows/golang.yaml/badge.svg)](https://github.com/paepckehh/fsdd/actions/workflows/golang.yaml)
+[![Go Reference](https://pkg.go.dev/badge/paepcke.de/dnsresolver.svg)](https://pkg.go.dev/paepcke.de/dnsresolver) [![Go Report Card](https://goreportcard.com/badge/paepcke.de/fsdd)](https://goreportcard.com/report/paepcke.de/fsdd) [![Go Build](https://github.com/paepckehh/fsdd/actions/workflows/golang/badge.svg)](https://github.com/paepckehh/fsdd/actions/workflows/golang)
 
 [paepche.de/fsdd](https://paepcke.de/fsdd/)
 
