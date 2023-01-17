@@ -103,4 +103,3 @@ and write filesystems hardlinks could result in unexpected data changes or data 
 # CONTRIBUTION
 
 Yes, Please! PRs Welcome! 
-[![Build Status](https://github.com/paepckehh/fsdd/actions/workflows/golang.yaml/badge.svg)](https://github.com/paepckehh/fsdd/actions/workflows/golang.yaml)
