@@ -1,4 +1,4 @@
-// {ackage fsdd allows ypu to deduplicate data via hardlinks
+// package fsdd allows ypu to deduplicate data via hardlinks
 package fsdd
 
 // Config is the general application layer high-level interface struct
