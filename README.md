@@ -1,7 +1,7 @@
 # OVERVIEW
 [![Go Reference](https://pkg.go.dev/badge/paepcke.de/fsdd.svg)](https://pkg.go.dev/paepcke.de/fsdd) [![Go Report Card](https://goreportcard.com/badge/paepcke.de/fsdd)](https://goreportcard.com/report/paepcke.de/fsdd) [![Go Build](https://github.com/paepckehh/fsdd/actions/workflows/golang.yml/badge.svg)](https://github.com/paepckehh/fsdd/actions/workflows/golang.yml)
 
-[paepche.de/fsdd](https://paepcke.de/fsdd/)
+[paepcke.de/fsdd](https://paepcke.de/fsdd/)
 
 fsdd - [f]ile [s]ystem [d]e[d]uplication
 
