@@ -67,7 +67,6 @@ func collectStats() {
 		case f.newSymLink:
 			failssym++
 		case f.syminvalid:
-			failisym++
 		default:
 			failinodes++
 		}

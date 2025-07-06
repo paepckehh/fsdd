@@ -43,7 +43,7 @@ var (
 	// global locks
 	bg, ctl, global sync.WaitGroup
 	// global counter
-	total, hsave, hcount, stotal, sinodes, ssym, failsize, failinodes, failssym, failisym uint64
+	total, hsave, hcount, stotal, sinodes, ssym, failsize, failinodes, failssym uint64
 )
 
 func (config *Config) run() {
