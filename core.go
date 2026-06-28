@@ -37,9 +37,9 @@ var (
 	linkChan  = make(chan *file, 10000)
 	failChan  = make(chan *file, 10000)
 	metaChan  = make(chan string, 10000)
-	dirChan   = make(chan string, 10000)
 	namesChan = make(chan string, 10000)
 	rmsymChan = make(chan string, 10000)
+	dirChan   = make(chan string, 1000000)
 	// global locks
 	bg, ctl, global sync.WaitGroup
 	// global counter
