@@ -6,7 +6,7 @@ import (
 )
 
 func cleanMetadata(worker int) {
-	for i := 0; i < worker; i++ {
+	for range worker {
 		var utimes [2]syscall.Timespec
 		utimes[0] = syscall.NsecToTimespec(0)
 		utimes[1] = utimes[0]
@@ -22,7 +22,7 @@ func cleanMetadata(worker int) {
 }
 
 func workerRemoveBrokenSymlinks(worker int) {
-	for i := 0; i < worker; i++ {
+	for range worker {
 		go func() {
 			for s := range rmsymChan {
 				err := os.Remove(s)

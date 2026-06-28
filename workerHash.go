@@ -14,7 +14,7 @@ import (
 func workerFileHash(worker int) {
 	switch c.FastHash {
 	case true:
-		for i := 0; i < worker; i++ {
+		for range worker {
 			go func() {
 				for target := range namesChan {
 					hashChan <- &file{name: target, fasthash: fastHash(target)}
@@ -23,7 +23,7 @@ func workerFileHash(worker int) {
 			}()
 		}
 	case false:
-		for i := 0; i < worker; i++ {
+		for range worker {
 			go func() {
 				for target := range namesChan {
 					hashChan <- &file{name: target, hash: hash(target)}
@@ -39,7 +39,7 @@ func feedFileHash() {
 	for _, v := range nfs {
 		l := len(v)
 		if l > 1 {
-			for i := 0; i < l; i++ {
+			for i := range l {
 				node := v[i]
 				if _, ok := dupes[node]; ok {
 					continue
@@ -87,20 +87,29 @@ const (
 // hash a file via sha512/256
 // fast enough on most modern 64bit arm64/x86-64 systems with sha assisted hardware instruction set
 func hash(file string) [_hashSize]byte {
-	f, _ := os.Open(file) // access already verified, skip double check here
+	// get handle, lock file
+	f, err := os.Open(file)
+	if err != nil {
+		// unreachable under normal condition => security / panic gate / exit
+		// access was already checked/granted earlier, possible reasons
+		// - corrupted os/kernel io due to memory pressue
+		// - live file system modifications/changes during deduplication
+		panic("[internal error] [unable to continue] [already verified file access failed] [unstable os, live modified fs] [unable to continue]")
+	}
+	// init
 	r, h := io.Reader(f), sha512.New512_256()
 	for {
 		block := make([]byte, _hashBlockSize)
 		l, _ := r.Read(block)
 		if l < _hashBlockSize {
-			_, err := h.Write(block)
-			if err != nil {
+			if _, err := h.Write(block); err != nil {
+				// unreachable
 				panic("[internal error] [unable to continue] [hash] [state]")
 			}
 			break
 		}
-		_, err := h.Write(block)
-		if err != nil {
+		if _, err := h.Write(block); err != nil {
+			// unreachable
 			panic("[internal error] [unable to continue] [hash] [state]")
 		}
 	}
@@ -118,10 +127,19 @@ var mseed = maphash.MakeSeed()
 // fasthash hash a via the new maphash pkg
 // extreme fast, but not secure against intentional crafted collisions (exact filesize & filehash must meet here, hard to archive)
 func fastHash(file string) uint64 {
-	f, _ := os.Open(file) // access already verified, skip double check here
-	r := io.Reader(f)
+	// init
 	var h maphash.Hash
 	h.SetSeed(mseed)
+	// get handle, lock file
+	f, err := os.Open(file)
+	if err != nil {
+		// unreachable under normal condition => security / panic gate / exit
+		// access was already checked/granted earlier, possible reasons
+		// - corrupted os/kernel io due to memory pressue
+		// - live file system modifications/changes during deduplication
+		panic("[internal error] [unable to continue] [already verified file access failed] [unstable os, live modified fs] [unable to continue]")
+	}
+	r := io.Reader(f)
 	for {
 		block := make([]byte, _hashBlockSize)
 		l, _ := r.Read(block)

@@ -24,7 +24,7 @@ func workerTreeWalker(worker int) {
 		errExit("[stat deviceID root dir] [" + c.Path + "]")
 	}
 	rootNodeDeviceID := uint64(d.Dev)
-	for i := 0; i < worker; i++ {
+	for range worker {
 		go func() {
 			for path := range dirChan {
 				list, err := os.ReadDir(path)

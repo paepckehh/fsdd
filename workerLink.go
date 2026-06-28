@@ -2,6 +2,7 @@ package fsdd
 
 import (
 	"os"
+	"syscall"
 )
 
 //
@@ -48,7 +49,7 @@ func feedLinkStats() {
 }
 
 func workerLink(worker int) {
-	for i := 0; i < worker; i++ {
+	for range worker {
 		go func() {
 			for f := range linkChan {
 				if !linkFast(f) {
@@ -98,18 +99,13 @@ func consolidateHash() [][]string {
 // BACKEND
 //
 
-const _templink = ".fsdd.temp.link.pls.remove.me"
+const (
+	_inodeHardLimit = uint64(64999)
+	_templink       = ".fsdd.temp.link.pls.remove.me"
+)
 
 func linkFast(f *file) bool {
 	var err error
-	if c.Verbose {
-		switch {
-		case f.newSymLink:
-			out("-> new SymLink [" + f.name + "] -> [" + f.newlinktarget + "]")
-		default:
-			out("-> new HardLink [" + f.name + "] -> [" + f.newlinktarget + "]")
-		}
-	}
 	tlink := f.newlinktarget + _templink
 	err = os.Rename(f.newlinktarget, tlink)
 	if err != nil {
@@ -118,13 +114,41 @@ func linkFast(f *file) bool {
 	}
 	switch {
 	case f.newSymLink:
+		// symlink
 		err = os.Symlink(f.name, f.newlinktarget)
+		if err != nil {
+			errOut("[link] [unable to link] [" + f.name + "] [" + f.newlinktarget + "] [" + err.Error() + "]")
+			errExit("[link] unrecoverable error, please restore [" + f.newlinktarget + "] via [" + f.name + "] manually, EXIT")
+		}
+		if c.Verbose {
+			out("-> new SymLink [" + f.name + "] -> [" + f.newlinktarget + "]")
+		}
 	default:
+		// hardlink
+		// eval existing number of inode entries, break if > 65k
+		fi, err := os.Stat(f.name)
+		if err != nil {
+			errExit("[link] unrecoverable error: unable to HardLink [" + f.name + "] -> [" + f.newlinktarget + "] - unable to access file(s)")
+			return false
+		}
+		nlink := uint64(0)
+		if sys := fi.Sys(); sys != nil {
+			if stat, ok := sys.(*syscall.Stat_t); ok {
+				nlink = uint64(stat.Nlink)
+			}
+		}
+		if nlink > _inodeHardLimit {
+			out("-> unable to HardLink [" + f.name + "] -> [" + f.newlinktarget + "] inode entry load reached maximum: " + humanUint64(nlink))
+			return false
+		}
 		err = os.Link(f.name, f.newlinktarget)
-	}
-	if err != nil {
-		errOut("[link] [unable to link] [" + f.name + "] [" + f.newlinktarget + "] [" + err.Error() + "]")
-		errExit("[link] unrecoverable error, please restore [" + f.newlinktarget + "] via [" + f.name + "] manually, EXIT")
+		if err != nil {
+			errOut("[link] [unable to link] [" + f.name + "] [" + f.newlinktarget + "] [" + err.Error() + "]")
+			errExit("[link] unrecoverable error, please restore [" + f.newlinktarget + "] via [" + f.name + "] manually, EXIT")
+		}
+		if c.Verbose {
+			out("-> new HardLink [" + f.name + "] -> [" + f.newlinktarget + "] inode entry load: " + humanUint64(nlink))
+		}
 	}
 	err = os.Remove(tlink)
 	if err != nil {
