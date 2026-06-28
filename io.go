@@ -1,8 +1,8 @@
 package fsdd
 
 import (
-	"os"
 	"fmt"
+	"os"
 	"strconv"
 )
 
@@ -55,7 +55,7 @@ func verifyPath(path string) string {
 	return path
 }
 
-// 
+//
 // CONVERTER
 //
 

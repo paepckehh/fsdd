@@ -138,7 +138,7 @@ func linkFast(f *file) bool {
 			}
 		}
 		if nlink > _inodeHardLimit {
-			out("-> unable to HardLink [" + f.name + "] -> [" + f.newlinktarget + "] inode entry load reached maximum: " + hruIEC(nlink,"entries"))
+			out("-> unable to HardLink [" + f.name + "] -> [" + f.newlinktarget + "] inode entry load reached maximum: " + hruIEC(nlink, "entries"))
 			return false
 		}
 		err = os.Link(f.name, f.newlinktarget)
@@ -147,7 +147,7 @@ func linkFast(f *file) bool {
 			errExit("[link] unrecoverable error, please restore [" + f.newlinktarget + "] via [" + f.name + "] manually, EXIT")
 		}
 		if c.Verbose {
-			out("-> new HardLink [" + f.name + "] -> [" + f.newlinktarget + "] inode entry load: " + hruIEC(nlink,"entries"))
+			out("-> new HardLink [" + f.name + "] -> [" + f.newlinktarget + "] inode entry load: " + hruIEC(nlink, "entries"))
 		}
 	}
 	err = os.Remove(tlink)
