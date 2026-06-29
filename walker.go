@@ -29,7 +29,7 @@ func workerTreeWalker(worker int) {
 			for path := range dirChan {
 				list, err := os.ReadDir(path)
 				if err != nil {
-					errOut("[read dir] [" + path + "] [" + err.Error() + "]")
+					errExit("[unable to read dir, exit] [" + path + "] [" + err.Error() + "]")
 					return
 				}
 				for _, item := range list {
